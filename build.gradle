@@ -1,12 +1,10 @@
 apply plugin: 'java'
 
 sourceCompatibility = 1.7
-group = 'com.alcist'
 version = '1.0'
 
 repositories {
     mavenCentral()
-    mavenLocal()
     maven {
         name 'Spigot'
         url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots'
@@ -28,14 +26,28 @@ sourceSets {
     }
 }
 
+jar {
+    from { // use of closure defers evaluation until execution time
+        configurations.bundle.collect {
+            zipTree(it)
+        }
+    }
+}
+
 task copyPlugin(type: Copy, dependsOn: jar) {
     from 'build/libs'
     include '**/*.jar'
     into pluginsFolder
 }
 
+configurations {
+    bundle
+}
 
 dependencies {
+    bundle project(':FireHelperAPI')
+    bundle 'com.firebase:firebase-client-jvm:2.3.1+'
     compile 'org.spigotmc:spigot-api:+'
+    compile configurations.bundle
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

@@ -1,2 +1,2 @@
-rootProject.name = 'pluginbase'
-
+rootProject.name = 'FireHelper'
+include 'FireHelperAPI'

@@ -1,1 +1,2 @@
-# Configuration goes here
+# Firebase BASE url
+url: "https://default.firebaseio.com"
