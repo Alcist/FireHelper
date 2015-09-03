@@ -1,4 +1,4 @@
-package eu.anvilindustries.anvilcraft.firehelper;
+package com.alcist.firehelper;
 
 import com.firebase.client.Firebase;
 import com.alcist.firehelper.FireHelper;
