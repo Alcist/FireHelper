@@ -1,0 +1,4 @@
+name: AnvilCraftAccount
+main: com.alcist.pluginbase.Plugin
+version: 1
+depend: [FireHelper]
