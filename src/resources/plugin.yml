@@ -1,4 +1,4 @@
-name: AnvilCraftAccount
+name: PluginBase
 main: com.alcist.pluginbase.Plugin
 version: 1
 depend: []
