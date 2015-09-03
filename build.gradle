@@ -28,7 +28,7 @@ sourceSets {
     }
 }
 
-task copyPlugin(type: Copy, dependsOn: Jar) {
+task copyPlugin(type: Copy, dependsOn: jar) {
     from 'build/libs'
     include '**/*.jar'
     into pluginsFolder
