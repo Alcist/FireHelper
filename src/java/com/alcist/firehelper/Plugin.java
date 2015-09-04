@@ -1,7 +1,6 @@
 package com.alcist.firehelper;
 
 import com.firebase.client.Firebase;
-import com.alcist.firehelper.FireHelper;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
