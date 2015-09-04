@@ -11,10 +11,10 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class BukkitFireListener<P extends JavaPlugin> {
 
-    private final Class<P> plugin;
+    private final P plugin;
 
     public BukkitFireListener(Class<P> plugin) {
-        this.plugin = plugin;
+        this.plugin = JavaPlugin.getPlugin(plugin);
     }
 
     public <T> Listener<T> listen(Class<T> dataClass, Callback<T> callback) {
@@ -35,13 +35,18 @@ public class BukkitFireListener<P extends JavaPlugin> {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             Runnable rn = new SyncedT(dataSnapshot);
-            Bukkit.getScheduler().runTask(JavaPlugin.getPlugin(plugin), rn);
+            if(plugin.isEnabled()) {
+                Bukkit.getScheduler().runTask(plugin, rn);
+            }
         }
 
         @Override
         public void onCancelled(FirebaseError firebaseError) {
             Runnable rn = new SyncedT(null);
-            Bukkit.getScheduler().runTask(JavaPlugin.getPlugin(plugin), rn);
+            if (plugin.isEnabled()) {
+                Bukkit.getScheduler().runTask(plugin, rn);
+            }
+
         }
 
         private class SyncedT implements Runnable {
